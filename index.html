@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ESCALATE.md — The AI Agent Human Approval Protocol</title>
-  <meta name="description" content="ESCALATE.md is an open file convention for AI agent human notification and approval protocols. Define which actions require human sign-off, who gets notified, how long the agent waits, and what happens if no one responds.">
+  <meta name="description" content="ESCALATE.md: AI agent approval protocol. Define escalation paths, human notification, required sign-offs, timeout handling, approval workflows, decision trees.">
   <meta name="keywords" content="AI safety, AI agent approval, ESCALATE.md, human oversight protocol, AI governance, agentic AI safety, EU AI Act compliance">
   <link rel="canonical" href="https://escalate.md/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="ESCALATE.md — The AI Agent Human Approval Protocol">
-  <meta property="og:description" content="An open file convention for AI agent human notification and approval. Define which actions require human sign-off and how to handle timeouts.">
+  <meta property="og:description" content="ESCALATE.md: AI agent approval protocol. Define escalation paths, human notification, required sign-offs, timeout handling, approval workflows, decision trees.">
   <meta property="og:url" content="https://escalate.md/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -34,7 +35,7 @@
     "email": "info@escalate.md",
     "description": "ESCALATE.md is an open file convention for AI agent human notification and approval protocols. It defines which actions require human sign-off, notification channels, approval timeouts, and fallback behaviour.",
     "knowsAbout": ["AI human oversight", "AI approval workflows", "human-in-the-loop AI", "EU AI Act compliance", "AI incident escalation", "ESCALATE.md specification"],
-    "sameAs": ["https://github.com/escalate-md/spec", "https://killswitch.md", "https://throttle.md", "https://failsafe.md", "https://terminate.md", "https://encrypt.md", "https://encryption.md", "https://sycophancy.md", "https://compression.md", "https://collapse.md", "https://failure.md", "https://leaderboard.md"]
+    "sameAs": ["https://killswitch.md", "https://throttle.md", "https://escalate.md", "https://failsafe.md", "https://terminate.md", "https://encrypt.md", "https://encryption.md", "https://sycophancy.md", "https://compression.md", "https://collapse.md", "https://failure.md", "https://leaderboard.md", "https://github.com/escalate-md/spec"]
   }
   </script>
 
@@ -53,7 +54,11 @@
       "name": "ESCALATE.md",
       "url": "https://escalate.md",
       "email": "info@escalate.md"
-    },
+    ,
+    "knowsAbout": ["incident escalation", "alert routing", "priority queues", "severity levels", "on-call management", "incident response", "escalation paths"]
+  ,
+    "sameAs": ["https://killswitch.md", "https://throttle.md", "https://escalate.md", "https://failsafe.md", "https://terminate.md", "https://encrypt.md", "https://encryption.md", "https://sycophancy.md", "https://compression.md", "https://collapse.md", "https://failure.md", "https://leaderboard.md", "https://github.com/escalate-md/spec"]
+  },
     "about": {
       "@type": "Thing",
       "name": "AI Agent Human Approval Protocol",
@@ -815,6 +820,7 @@
     </ul>
   </nav>
 
+  <main>
   <!-- HERO -->
   <section class="hero">
     <div class="hero-grid">
@@ -898,6 +904,7 @@
     </div>
   </div>
 
+  <article>
   <!-- WHAT IS -->
   <section class="section" id="what">
     <div class="section-inner">
@@ -908,21 +915,21 @@
           <p>
             <strong>ESCALATE.md is a plain-text Markdown file</strong> you place in the root of any repository that contains an AI agent. It defines which actions require human approval before execution — and how to notify humans when those triggers are hit.
           </p>
-          <h3>The problem it solves</h3>
+          <h3>What problem does ESCALATE.md solve?</h3>
           <p>
             AI agents can send emails, make payments, deploy to production, and delete data — autonomously, continuously, and at speed. Without explicit approval gates, a well-intentioned agent can take irreversible actions no human sanctioned. Once sent, an email can't be unsent. Once deleted, data may be gone forever.
           </p>
-          <h3>How it works</h3>
+          <h3>How does ESCALATE.md work?</h3>
           <p>
             Drop <code style="font-family: var(--mono); font-size:13px; color: var(--green); background: var(--surface); padding: 2px 6px; border-radius: 3px;">ESCALATE.md</code> in your repo root and define: which actions always require human approval (deploys, payments, bulk communications), which channels to notify (email, Slack, PagerDuty), how long to wait for a response, and what to do if no one answers. The agent reads it on startup. Your compliance team reads it in the audit.
           </p>
-          <h3>The regulatory context</h3>
+          <h3>What regulations require ESCALATE.md?</h3>
           <p>
             The <strong><a href="https://digital-strategy.ec.europa.eu/en/policies/european-approach-artificial-intelligence" style="color: var(--orange); text-decoration: none; border-bottom: 1px solid rgba(255,107,43,0.3);">EU AI Act</a></strong> (effective August 2026) mandates human oversight for high-risk AI decisions. Multiple frameworks require audit trails of who approved what and when. <code style="font-family: var(--mono); font-size:13px; color: var(--green); background: var(--surface); padding: 2px 6px; border-radius: 3px;">ESCALATE.md</code> creates that trail automatically — every approval, denial, and timeout is logged with timestamp and approver identity.
           </p>
         </div>
         <div class="prose">
-          <h3>How to use it</h3>
+          <h3>How do I add ESCALATE.md to my project?</h3>
           <p>Copy the template from <a href="https://github.com/escalate-md/spec" style="color: var(--orange); text-decoration: none; border-bottom: 1px solid rgba(255,107,43,0.3);">GitHub</a> and place it in your project root:</p>
           <div style="background: var(--surface); border: 1px solid var(--border-bright); border-radius: 6px; padding: 20px; margin: 16px 0; font-family: var(--mono); font-size: 12px; line-height: 1.8; color: var(--text-dim);">
             <span style="color: var(--text-dimmer);">your-project/</span><br>
@@ -932,11 +939,11 @@
             <span style="color: var(--text-dimmer);">├── README.md</span><br>
             <span style="color: var(--text-dimmer);">└── src/</span>
           </div>
-          <h3>What it replaces</h3>
+          <h3>What did teams use before ESCALATE.md?</h3>
           <p>
             Before ESCALATE.md, approval rules were scattered: hardcoded in the system prompt, buried in config files, missing entirely, or documented in a Notion page no one reads. ESCALATE.md makes approval requirements <strong>version-controlled, auditable, and co-located with your code.</strong>
           </p>
-          <h3>Who reads it</h3>
+          <h3>Who benefits from ESCALATE.md?</h3>
           <p>
             The AI agent reads it on startup. Your engineer reads it during code review. Your compliance team reads it during audits. Your regulator reads it if something goes wrong. One file serves all four audiences.
           </p>
@@ -1093,6 +1100,8 @@
   <div style="padding: 24px 40px; border-bottom: 1px solid var(--border); text-align: center;">
     <p style="font-family: var(--mono); font-size: 12px; color: var(--text-dimmer);">Last updated: March 2026</p>
   </div>
+  </article>
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -1101,6 +1110,7 @@
       <li><a href="https://github.com/escalate-md/spec" target="_blank" rel="noopener">GitHub</a></li>
       <li><a href="/llms.txt">llms.txt</a></li>
       <li><a href="/knowledge">Knowledge</a></li>
+      <li><a href="/privacy">Privacy</a></li>
       <li><a href="mailto:info@escalate.md">Contact</a></li>
     </ul>
     <div class="footer-note">Open standard · MIT licence · v1.0 · 2026</div>
