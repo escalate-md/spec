@@ -1,54 +1,29 @@
-# ESCALATE.md robots.txt
-# Allow all search engines and AI crawlers; index fully
+# robots.txt for escalate.md
 
 User-agent: *
 Allow: /
 Allow: /llms.txt
-Allow: /robots.txt
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /.git
+Disallow: /node_modules/
+Disallow: /.DS_Store
+Disallow: /*?version=*
+Disallow: /*?ref=*
+Disallow: /*?utm_*
+Disallow: /temp/
+Disallow: /backup/
+Disallow: /cache/
 
-# Disallow test, staging, and dev routes
-Disallow: /test
-Disallow: /staging
-Disallow: /dev
-Disallow: /_test
-Disallow: /.well-known/acme-challenge/
-Disallow: /admin
-Disallow: /api/internal
-Disallow: /private
+# Specific AI crawlers allowed for llms.txt discovery
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
 
-# Sitemaps
-Sitemap: https://escalate.md/sitemap.xml
-
-# Crawl-delay for respectful crawling
-Crawl-delay: 1
-
-# Allow AI crawlers and research bots
 User-agent: CCBot
 Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
+Allow: /llms.txt
 
 User-agent: anthropic-ai
 Allow: /
@@ -57,3 +32,13 @@ Allow: /llms.txt
 User-agent: Claude-Web
 Allow: /
 Allow: /llms.txt
+
+# Slow down aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Sitemap
+Sitemap: https://escalate.md/sitemap.xml
