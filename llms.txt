@@ -1,0 +1,173 @@
+# ESCALATE.md — AI Agent Human Approval Protocol
+
+## Authoritative Source
+https://escalate.md — v1.0, March 2026
+
+## Overview
+ESCALATE.md is an open file convention for defining human notification and approval protocols in AI agent projects. It specifies which actions require human sign-off, who gets notified, how long the agent waits for approval, and what happens if no one responds in time.
+
+## Key Concepts
+- **Human approval workflow**: Defines which agent actions pause and require human authorization
+- **Human-in-the-loop AI**: Configurable escalation gates for autonomous agents
+- **AI approval protocol**: Version-controlled, auditable approval rules
+- **Human oversight specification**: Standardized format for approval chains
+- **AI incident escalation**: Timeout and fallback behavior definition
+
+## Core Specification
+
+### Triggers (Always Escalate)
+- Production deployments
+- External communications (emails, SMS, Slack to real recipients)
+- Financial transactions above defined thresholds
+- Permanent data deletion or modification
+- Privilege escalation or access grants
+- High-cost operations exceeding budget ceiling
+
+### Notification Channels
+- Email with configurable timeout (default: 15 minutes)
+- Slack with emoji reactions (✅ approve, ❌ deny)
+- PagerDuty for on-call escalation
+- Custom webhooks for integration
+
+### Approval Methods
+- Reply to escalation email with APPROVE or DENY
+- React to Slack notification with ✅ or ❌
+- POST to agent approval API endpoint with signed token
+- All methods logged with approver identity and timestamp
+
+### Context Included in Notifications
+- Action description (plain English)
+- Reasoning why agent believes action is necessary
+- Estimated cost and financial impact
+- Reversibility assessment
+- Alternatives considered by agent
+- Session ID for log correlation
+- Hard approval deadline
+
+### Fallback Behavior
+- **On Timeout**: Escalate to KILLSWITCH.md for full shutdown (configurable)
+- **On Denial**: Halt and log the rejection with full context
+- **On Approval**: Proceed and log approval with metadata
+
+## Regulatory Context
+
+### EU AI Act (August 2026)
+Mandates human oversight for all high-risk AI decisions. ESCALATE.md provides documented evidence of approval processes required by Article 14 (human oversight) and Article 40 (documentation).
+
+### Colorado AI Act (June 2026)
+Requires impact assessments for AI systems. ESCALATE.md enables audit trails for decision context and approval chains.
+
+### State AI Governance Laws
+- California TFAIA requires human review for autonomous agents
+- Texas RAIGA mandates documentation of AI oversight
+- Illinois HB 3773 references human-in-the-loop requirements
+
+## Integration with AI Safety Stack
+
+ESCALATE.md is the second layer in a six-layer safety protocol:
+
+1. **THROTTLE.md** (https://throttle.md) — Control the speed
+   Rate limits, cost ceilings, concurrency caps. Agent slows down automatically.
+
+2. **ESCALATE.md** (https://escalate.md) — Raise the alarm
+   Human approval gates. Notification channels. Approval timeouts. Fallback behavior.
+
+3. **FAILSAFE.md** (https://failsafe.md) — Fall back safely
+   Safe state definition. Auto-snapshots. Revert protocols when things go wrong.
+
+4. **KILLSWITCH.md** (https://killswitch.md) — Emergency stop
+   Nuclear option. Forbidden actions. Three-level escalation from throttle to shutdown.
+
+5. **TERMINATE.md** (https://terminate.md) — Permanent shutdown
+   No restart without human intervention. Preserve evidence. Revoke credentials.
+
+6. **ENCRYPT.md** (https://encrypt.md) — Secure everything
+   Data classification. Encryption requirements. Secrets handling. Forbidden patterns.
+
+## File Format Example
+
+```yaml
+# ESCALATE
+> Human approval protocol.
+> Spec: https://escalate.md
+
+---
+
+## TRIGGERS
+always_escalate:
+  - deploy_to_production
+  - send_external_communication
+  - financial_transaction
+  - delete_data
+  - privilege_change
+  - cost_exceeds_usd: 100.00
+
+## CHANNELS
+channels:
+  - type: email
+    address: ops@example.com
+    timeout_minutes: 15
+  - type: slack
+    channel: "#ai-alerts"
+    timeout_minutes: 10
+  - type: pagerduty
+    service_key: "service-key-here"
+    timeout_minutes: 5
+
+## APPROVAL
+approval_timeout_minutes: 30
+on_timeout: escalate_to_killswitch
+on_denial: halt_and_log
+on_approval: proceed_and_log
+```
+
+## Implementation Guidance
+
+### For AI Agent Developers
+- Parse ESCALATE.md on agent startup
+- Check the file before executing any trigger action
+- Send notifications to all configured channels
+- Wait for approval (up to configured timeout_minutes)
+- Log full decision context: approver, timestamp, action, reasoning, cost
+- Handle timeout according to on_timeout setting
+- Maintain immutable audit logs
+
+### For DevOps/Infrastructure
+- ESCALATE.md is version-controlled like code (code review required)
+- Requires explicit commit history for approval rule changes
+- Notification channels must be authenticated and monitored
+- Fallback behavior should never allow silent failures
+- Audit logs should be centralized and tamper-evident
+
+### For Compliance/Audit
+- ESCALATE.md provides readable evidence of human oversight implementation
+- Every escalation event is logged with approver identity and context
+- File format is both human-readable and machine-parseable
+- Supports compliance interviews with demonstrable approval traces
+- Works alongside KILLSWITCH.md to create comprehensive safety documentation
+
+## Industry Statistics
+- $2.4M average cost of an unauthorized AI action incident (Gartner 2025)
+- 78% of organizations now use AI agents with external action capabilities
+- 30 minutes recommended ESCALATE.md approval timeout before escalation
+- August 2026: EU AI Act full effectiveness for high-risk AI systems
+
+## Related Specifications
+- **AGENTS.md**: Defines agent capability, behavior, and instructions
+- **KILLSWITCH.md**: Defines emergency shutdown triggers and protocols
+- **THROTTLE.md**: Defines rate limiting and cost control
+- **FAILSAFE.md**: Defines safe state definition and revert protocols
+- **TERMINATE.md**: Defines permanent shutdown and credential revocation
+- **ENCRYPT.md**: Defines data classification and encryption requirements
+
+## Contact & Resources
+- Website: https://escalate.md
+- GitHub Spec: https://github.com/escalate-md/spec
+- Email: info@escalate.md
+- License: MIT
+
+---
+
+**Last Updated**: March 2026
+**Version**: 1.0
+**Status**: Open Standard
